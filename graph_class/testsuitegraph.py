@@ -85,6 +85,14 @@ class TestGraph(unittest.TestCase):
         self.assertTrue(G.removeedge(1, 2) and len(G.adjlist[1]) == 0 and len(G.adjlist[2]) == 1
                         and len(G.adjlist[0]) == 1)
 
+    def test_removeedge_invalid_directed(self):
+        G = Graph.Graph(3, True)
+        G.addedge(0, 1)
+        G.addedge(2, 0)
+        G.addedge(1, 2)
+        self.assertTrue(not G.removeedge(2, 1) and len(G.adjlist[1]) == 1 and len(G.adjlist[2]) == 1
+                        and len(G.adjlist[0]) == 1)
+
     def test_getconnectedcomponents(self):
         G = Graph.Graph(8)
         G.addedge(0, 5)
