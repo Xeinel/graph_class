@@ -69,6 +69,25 @@ class TestGraph(unittest.TestCase):
         self.assertTrue(len(G.adjlist[0]) == 2 and len(G.adjlist[1]) == 2 and len(G.adjlist[2]) == 2
                         , "[ADDEDGE] Invalid adjencylist")
 
+    def test_addedge_valid_non_directed_srcequalsdst(self):
+        G = Graph.Graph(3)
+        G.addedge(0, 1)
+        G.addedge(2, 0)
+        G.addedge(1, 2)
+        G.addedge(1,1)
+        self.assertTrue(len(G.adjlist[0]) == 2 and len(G.adjlist[1]) == 3 and len(G.adjlist[2]) == 2
+                        , "[ADDEDGE] Invalid adjencylist")
+
+    def test_addedge_valid_directed_srcequalsdst(self):
+        G = Graph.Graph(3)
+        G.addedge(0, 1)
+        G.addedge(2, 0)
+        G.addedge(1, 2)
+        G.addedge(1,1)
+        G.removeedge(1,1)
+        self.assertTrue(len(G.adjlist[0]) == 2 and len(G.adjlist[1]) == 2 and len(G.adjlist[2]) == 2
+                        , "[ADDEDGE] Invalid adjencylist")
+
     def test_removeedge_valid_non_directed(self):
         G = Graph.Graph(3)
         G.addedge(0, 1)
