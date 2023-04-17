@@ -1,6 +1,6 @@
 import unittest
 
-from graph_class import Graph
+import Graph
 
 
 class TestInitGraph(unittest.TestCase):

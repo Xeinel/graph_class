@@ -1,6 +1,7 @@
 import unittest
 
-from graph_class import Graph
+import Graph
+
 
 class TestAddEdge(unittest.TestCase):
     def test_addedge_invalidsrc_one(self):
@@ -61,6 +62,7 @@ class TestAddEdge(unittest.TestCase):
         G.removeedge(1, 1)
         self.assertTrue(len(G.adjlist[0]) == 2 and len(G.adjlist[1]) == 2 and len(G.adjlist[2]) == 2
                         , "[ADDEDGE] Invalid adjencylist")
+
 
 class TestRemoveEdge(unittest.TestCase):
     def test_removeedge_valid_non_directed(self):

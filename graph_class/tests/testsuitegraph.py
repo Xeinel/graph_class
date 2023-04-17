@@ -1,8 +1,10 @@
 import unittest
 
-from graph_class import Graph
-from graph_class import graphalgorithm
+import Graph
+import graphalgorithm
 from test_initgraph import TestInitGraph
 from test_edge import TestAddEdge
 from test_node import TestAddNode
-from test_graphalgorithm import TestGraphAlgorithm
+from test_graphalgorithm import TestConnectedComponents
+from test_transposegraph import TestTransposeGraph
+from test_copygraph import TestCopyGraph

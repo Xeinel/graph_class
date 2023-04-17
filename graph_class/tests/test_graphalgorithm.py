@@ -1,9 +1,10 @@
 import unittest
 
-from graph_class import Graph
-from graph_class import graphalgorithm
+import Graph
+import graphalgorithm
 
-class TestGraphAlgorithm(unittest.TestCase):
+
+class TestConnectedComponents(unittest.TestCase):
     def test_getconnectedcomponents(self):
         G = Graph.Graph(8)
         G.addedge(0, 5)
@@ -13,7 +14,7 @@ class TestGraphAlgorithm(unittest.TestCase):
         G.addedge(2, 3)
         G.addedge(2, 4)
         G.addedge(5, 6)
-        self.assertEqual(G.get_connected_components_numbers(), 3)
+        self.assertEqual(len(G.get_connected_components()), 3)
 
     def test_emptygraph_connected(self):
         G = Graph.Graph(0)
