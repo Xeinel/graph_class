@@ -1,3 +1,4 @@
+import warnings
 import graphalgorithm
 
 
@@ -11,14 +12,12 @@ class Graph:
         self.order = order
         self.is_directed = is_directed
 
-    def addnode(self, node):
+    def addnode(self, adjlist=[]):
         """ Add a node to the graph.
-        :param node: (int) The node to add
+        :param adjlist: (List) The adjency list
         """
-        if node < self.order:
-            raise Exception("[ADDEDGE] This node is already in the graph")
         self.order += 1
-        self.adjlist.append([])
+        self.adjlist.append(adjlist)
 
     def addedge(self, src, dst):
         """ Add an edge between two nodes.
@@ -51,14 +50,6 @@ class Graph:
             self.adjlist[dst].remove(src)
         return valid
 
-    def get_connected_components_numbers(self):
-        """ Get the number of connected components
-        :return: (int) The number of connected components
-        """
-        if self.is_directed:
-            raise Exception("[GET_CONNECTED_COMPONENTS_NUMBERS] The actual graph is directed.")
-        return len(graphalgorithm.get_connected_components(self))
-
     def get_connected_components(self):
         """ Get all the connected components
         :return: List[List(int)] All connected components
@@ -74,3 +65,26 @@ class Graph:
         if self.is_directed:
             raise Exception("[IS_CONNECTED] The actual graph is directed.")
         return len(graphalgorithm.get_connected_components(self)) == 1
+
+    def copy(self):
+        """ Create a copy of a graph
+        :return: Newly created graph
+        """
+        newG = Graph(self.order, self.is_directed)
+        for i in range(self.order):
+            for node in self.adjlist[i]:
+                newG.addedge(i, node)
+        return newG
+
+    def transpose(self):
+        """ Transpose the graph
+        :return: The transposed graph
+        """
+        if not self.is_directed:
+            warnings.warn("Transpose: This graph is not directed. The graph has not been transposed.")
+            return
+        G = Graph(self.order, self.is_directed)
+        for i in range(self.order):
+            for node in self.adjlist[i]:
+                G.addedge(node, i)
+        return G
